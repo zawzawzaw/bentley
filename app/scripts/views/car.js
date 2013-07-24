@@ -1,11 +1,11 @@
-define(['backbone','models/car'],function(Backbone, CarModel){
+define(['backbone','collections/car'],function(Backbone, CarCollection){
 
 	var CarView = Backbone.View.extend({
 		initialize : function() {
 
-			this.model = new CarModel();
+			this.collection = new CarCollection({ 'test' : 'test'});
 
-			console.log( this.model.toJSON() );
+			console.log( this.collection.toJSON() );
 		}
 	});
 
