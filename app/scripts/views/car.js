@@ -1,11 +1,27 @@
-define(['backbone','collections/car'],function(Backbone, CarCollection){
+define(['backbone','collections/car','views/onecar'],function(Backbone, CarCollection, OneCarView){
 
 	var CarView = Backbone.View.extend({
-		initialize : function() {
+		el : "body",
+		render : function() {
+			this.collection = new CarCollection();
 
-			this.collection = new CarCollection({ 'test' : 'test'});
+			var that = this;
 
-			console.log( this.collection.toJSON() );
+			this.collection.fetch(
+			{
+		        success: function (collection, response) {
+
+					collection.each(that.addCar, that);
+		        },
+		        error: function() {
+		             console.log('Failed to fetch!');
+		        }
+		   }, this);	
+		},
+		addCar : function(car){
+			var oneCarView = new OneCarView({ model : car });
+		
+			this.$el.append(oneCarView.render().el);
 		}
 	});
 
