@@ -1,16 +1,17 @@
-define(['backbone','collections/car'], function(Backbone, CarCollection){
+define(['backbone','collections/car','views/category'], function(Backbone, CarCollection, CategoryView){
 	var CategoriesView = Backbone.View.extend({
 		el : 'body',
 		render : function(id) {
 			this.collection = new CarCollection();
 
 			var that = this;
-
+			
 			this.collection.fetch(
 			{
 				data: { mod_id: id },
     			processData: true,
 		        success: function (collection, response) {
+		        	that.$el.html('');
 					collection.each(that.addCategory, that);
 		        },
 		        error: function() {
@@ -19,7 +20,8 @@ define(['backbone','collections/car'], function(Backbone, CarCollection){
 		   }, this);
 		},
 		addCategory: function(category){
-			console.log(category);
+			var categoryView = new CategoryView({ model: category });
+			this.$el.append(categoryView.render().el);
 		}
 	});
 

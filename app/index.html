@@ -9,8 +9,24 @@
 	</head>
 	<body>
 		<script id="catelogueTemplate" type="text/template">
-		    <h3><a href="<%= mod_id %>"><%= model_no %></a></h3>
+		    <div>
+			    <h3>
+			    	<a href="#showcategories/<%= mod_id %>"><%= model_no %></a>
+			    </h3>
+		    </div>
+		</script>
 
+		<script id="categoryTemplate" type="text/template">
+		    <div>
+		    	<a href="#showproducts/<%= cat_id %>"><%= cat_name %></a>
+		    </div>
+		</script>
+
+		<script id="productTemplate" type="text/template">
+		    <div><%= prod_name %></div>
+		    <div><%= amount %></div>
+		    <input type="checkbox" name="prod_<%= prod_id %>" value="<%= amount %>" class="toggle" />
+		    <div><%= wheel %></div>
 		</script>
 
 		<script data-main="scripts/main.js" src="scripts/vendor/requirejs/require.js"></script>

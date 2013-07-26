@@ -10,7 +10,7 @@ define(['backbone','collections/car','views/onecar'],function(Backbone, CarColle
 			this.collection.fetch(
 			{
 		        success: function (collection, response) {
-
+		        	that.$el.html('');
 					collection.each(that.addCar, that);
 		        },
 		        error: function() {

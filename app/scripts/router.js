@@ -1,9 +1,9 @@
-define(['jquery','underscore','backbone','views/car','views/categories'], function($, _, Backbone, CarView, CategoriesView){
+define(['jquery','underscore','backbone','views/car','views/categories', 'views/products'], function($, _, Backbone, CarView, CategoriesView, ProductsView){
 	var AppRouter = Backbone.Router.extend({ 
 		routes : {
 			'' : 'showCarModels',
-			'showcar/:id' : 'showCategories',
-			'download/:id/*filename' : 'download',
+			'showcategories/:id' : 'showCategories',
+			'showproducts/:id' : 'showProducts',
 			'search/:query': 'search',
 			'*other' : 'default'
 		},
@@ -13,10 +13,11 @@ define(['jquery','underscore','backbone','views/car','views/categories'], functi
 		},
 		showCategories : function(id){
 			var categoriesView = new CategoriesView();
-			categoriesView.render(1);
+			categoriesView.render(id);
 		},
-		download : function(id, filename) {
-			console.log(id + filename);
+		showProducts : function(id) {
+			var productsView = new ProductsView();
+			productsView.render(id);
 		},
 		search : function(search){
 			console.log('what you searching for '+ search);
