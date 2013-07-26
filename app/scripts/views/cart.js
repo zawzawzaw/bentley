@@ -1,17 +1,27 @@
-define(['backbone', 'collections/carts'], function(Backbone, CartsCollection){
+define(['backbone', 'collections/carts'], function(Backbone, cartsCollection){
 
 	var CartView = Backbone.View.extend({
+		template: _.template($('#viewcartTemplate').html()),
 		initialize: function(){
 			
-			cartsCollection = new CartsCollection();
+			// var cartsModel = new CartsModel();
 
-			console.log(this.model);
-			console.log(cartsCollection);
-
+			// cartsModel.set(this.model);
 
 			cartsCollection.add(this.model);
 
-			console.log(cartsCollection);
+			var self = this;
+
+			cartsCollection.each(function(cart){
+				this.$el.html( self.template(cart.toJSON() ) );
+			}, this);
+
+			console.log(this.el);
+
+			console.log(cartsCollection.toJSON());
+		},
+		render : function(){
+
 		}
 	});
 

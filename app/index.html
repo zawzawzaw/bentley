@@ -8,6 +8,8 @@
 		<meta name="viewport" content="width=device-width">
 	</head>
 	<body>
+		<div id="#something"></div>
+
 		<script id="catelogueTemplate" type="text/template">
 		    <div>
 			    <h3>
@@ -26,6 +28,12 @@
 		    <div><%= prod_name %></div>
 		    <div><%= amount %></div>
 		    <input type="checkbox" name="prod_<%= prod_id %>" value="<%= amount %>" class="toggle" />
+		    <div><%= wheel %></div>
+		</script>
+
+		<script id="viewcartTemplate" type="text/template">
+			<div><%= prod_name %></div>
+		    <div><%= amount %></div>
 		    <div><%= wheel %></div>
 		</script>
 

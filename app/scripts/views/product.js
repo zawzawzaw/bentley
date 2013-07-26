@@ -6,8 +6,6 @@ define(['backbone', 'views/cart'], function(Backbone, CartView){
         	'click .toggle': 'toggleChoosed'
 	    },
 	    toggleChoosed: function (e) {
-	        // alert(e.currentTarget.name);
-
 	        var cartView = new CartView({ model : this.model });	    	
 	    },
 		render : function(){

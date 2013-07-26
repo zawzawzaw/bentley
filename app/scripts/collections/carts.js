@@ -4,5 +4,7 @@ define(['backbone', 'models/cart'],function(Backbone, Cart){
 		model : Cart
 	});
 
-	return CartsCollection;
+	var cartsCollection = new CartsCollection();
+
+	return cartsCollection;
 });
