@@ -8,7 +8,10 @@
 		<meta name="viewport" content="width=device-width">
 	</head>
 	<body>
-		<div id="#something"></div>
+		<div id="carAndProductList">id="myDiv"</div>
+		<div id="myCartList" style="color: red;"></div>
+		<div id="total">Total: <span>0</span></div>
+		<button class="saveCart" id="saveCart">Save</button>
 
 		<script id="catelogueTemplate" type="text/template">
 		    <div>
@@ -35,7 +38,9 @@
 			<div><%= prod_name %></div>
 		    <div><%= amount %></div>
 		    <div><%= wheel %></div>
+		   	<button class="deleteFromCart" id="<%- prod_id %>">delete</button>
 		</script>
+
 
 		<script data-main="scripts/main.js" src="scripts/vendor/requirejs/require.js"></script>
 	<body>

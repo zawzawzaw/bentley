@@ -1,4 +1,4 @@
-define(['backbone', 'views/cart'], function(Backbone, CartView){
+define(['backbone', 'views/carts'], function(Backbone, CartsView){
 	var ProductView = Backbone.View.extend({
 		tagName : 'div',
 		template : _.template($('#productTemplate').html()),
@@ -6,7 +6,19 @@ define(['backbone', 'views/cart'], function(Backbone, CartView){
         	'click .toggle': 'toggleChoosed'
 	    },
 	    toggleChoosed: function (e) {
-	        var cartView = new CartView({ model : this.model });	    	
+
+	    	var isChecked = e.currentTarget.checked;
+
+	    	var cartsView = new CartsView({ model : this.model });
+
+	    	if(isChecked==true) {
+	    		cartsView.checked();
+	    		cartsView.render();
+	    	}	
+	    	else {
+	    		cartsView.unchecked();
+	    		cartsView.render();
+	    	}
 	    },
 		render : function(){
 			this.$el.html(this.template(this.model.toJSON()));

@@ -1,6 +1,6 @@
-define(['backbone','collections/car','views/category'], function(Backbone, CarCollection, CategoryView){
+define(['backbone','jquery','collections/car','views/category'], function(Backbone, $, CarCollection, CategoryView){
 	var CategoriesView = Backbone.View.extend({
-		el : 'body',
+		el : '#carAndProductList',
 		render : function(id) {
 			this.collection = new CarCollection();
 

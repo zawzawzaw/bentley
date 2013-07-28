@@ -1,6 +1,6 @@
-define(['backbone','collections/car', 'views/product'], function(Backbone, CarCollection, ProductView){
+define(['backbone','jquery','collections/car', 'views/product'], function(Backbone, $, CarCollection, ProductView){
 	var ProductsView = Backbone.View.extend({
-		el: 'body',
+		el: '#carAndProductList',
 		render : function(id) {
 			this.collection = new CarCollection();
 
@@ -23,7 +23,7 @@ define(['backbone','collections/car', 'views/product'], function(Backbone, CarCo
 
 			var productView = new ProductView({ model : product });
 
-			this.$el.append(productView.render('something').el);
+			this.$el.append(productView.render().el);
 		}
 	});
 
