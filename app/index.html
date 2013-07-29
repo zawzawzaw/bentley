@@ -6,12 +6,21 @@
 		<title></title>
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width">
+		<link rel="stylesheet" href="css/bootstrap.css">
 	</head>
 	<body>
-		<div id="carAndProductList">id="myDiv"</div>
-		<div id="myCartList" style="color: red;"></div>
-		<div id="total">Total: <span>0</span></div>
-		<button class="saveCart" id="saveCart">Save</button>
+		<div id="container" class="container">
+			<div id="carAndProductList" class="row">
+				
+			</div>
+			<div id="myCartList" style="color: red;"></div>
+			<div id="total">Total: <span>0</span></div>
+			<button class="doneAdding" id="doneAdding" style="display:none;">Done Adding?</button>
+			<button class="finishCart" id="finishCart">Finish</button>
+		</div>
+		<div id="container2" class="container">
+			<div id="form"></div>
+		</div>
 
 		<script id="catelogueTemplate" type="text/template">
 		    <div>
@@ -22,7 +31,7 @@
 		</script>
 
 		<script id="categoryTemplate" type="text/template">
-		    <div>
+		    <div class="span6">
 		    	<a href="#showproducts/<%= cat_id %>"><%= cat_name %></a>
 		    </div>
 		</script>
@@ -30,8 +39,8 @@
 		<script id="productTemplate" type="text/template">
 		    <div><%= prod_name %></div>
 		    <div><%= amount %></div>
-		    <input type="checkbox" name="prod_<%= prod_id %>" value="<%= amount %>" class="toggle" />
 		    <div><%= wheel %></div>
+		    <button class="addToCart" id="prod_<%= prod_id %>">Add To Cart</button>
 		</script>
 
 		<script id="viewcartTemplate" type="text/template">
@@ -40,6 +49,42 @@
 		    <div><%= wheel %></div>
 		   	<button class="deleteFromCart" id="<%- prod_id %>">delete</button>
 		</script>
+
+		<script type="text/template" id="customerForm"><form class ="form form-horizontal">
+			<div class="control-group">
+			    <label for="name" class="control-label">Name</label>
+			    <div class="controls">
+			    	<input type="text" name="name" value="" >
+			    </div>
+			</div>
+			<div class="control-group">
+			    <label for="email" class="control-label">Email</label>
+			    <div class="controls">
+			    	<input type="text" name="email" value="" >
+			    </div>
+			</div>
+			<div class="control-group">
+				<label for="address" class="control-label">Address</label>
+				<div class="controls">
+					<textarea name="address"></textarea>
+				</div>
+			</div>
+
+			<div class="control-group">
+			    <label for="phone" class="control-label">Phone</label>
+			    <div class="controls">
+			    	<input type="text" name="phone" value="" >
+			    </div>
+			</div>
+
+			<div class="control-group">
+			    <div class="controls">
+			    	<button class="submit">Submit</button>
+			    	<button class="edit">Edit</button>
+			    </div>
+			</div>
+		</form>
+	</script>
 
 
 		<script data-main="scripts/main.js" src="scripts/vendor/requirejs/require.js"></script>

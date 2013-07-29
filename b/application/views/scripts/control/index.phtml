@@ -1,0 +1,40 @@
+<form method="POST">
+	<table style="width:100%;margin:30px 0 0 25px;">
+		<tr>
+			<td colspan="2">
+				<h2>Control Panel [The New Paper]</h2>
+			</td>
+		</tr>
+		<?php if( !empty($this->message) ): ?>
+			<tr>
+				<td colspan="2"><span style="background-color:#6699FF;"><?php echo $this->message; ?></span></td>
+			</tr>
+		<?php endif; ?>
+		<tr>
+			<td width="18%"><label>Status</label></td>
+			<td><?php echo ($this->submission['status']=='2')?'<span style="color:#FF0000;">Hide</span>':'<span style="color:#00FF00;">Show</span'; ?></td>
+		</tr>
+		<tr>
+			<td><label>Action</label></td>
+			<td>
+				<button type="submit" name="showbtn">Show</button>
+				<button type="submit" name="hidebtn">Hide</button>
+				<input type="hidden" name="h_id" value="<?php echo $this->submission['id']; ?>"/>
+				<input type="hidden" name="h_key" value="<?php echo $this->controlActionChecksum; ?>"/>
+			</td>
+		</tr>
+		<tr>
+			<td valign="top"><label>Cover photo details</label></td>
+			<td>
+				name: <?php echo $this->submission['name']; ?><br>
+				gender: <?php echo $this->submission['gender']; ?><br>
+				email: <?php echo $this->submission['email']; ?><br>
+				mobile: <?php echo $this->submission['mobile']; ?><br>
+				What tick you: <?php echo $this->submission['wty']; ?><br>
+				what tick you description: <?php echo $this->submission['wty_desc']; ?><br>
+				unique id: <?php echo $this->submission['id']; ?><br>
+				<img src="<?php echo $this->uploadurl.$this->submission['id']; ?>.jpg"/>
+			</td>
+		</tr>
+	</table>
+</form>

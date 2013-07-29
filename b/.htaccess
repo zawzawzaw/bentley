@@ -1,0 +1,10 @@
+# -FrontPage-
+# Rewrite rules for Zend Framework
+RewriteEngine on
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^.*$ /ipad/b/index.php [NC,L]
+
+# Security: Don't allow browsing of directories
+#Options -Indexes

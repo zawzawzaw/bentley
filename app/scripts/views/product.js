@@ -3,28 +3,38 @@ define(['backbone', 'views/carts'], function(Backbone, CartsView){
 		tagName : 'div',
 		template : _.template($('#productTemplate').html()),
 		events: {
-        	'click .toggle': 'toggleChoosed'
+        	'click .addToCart': 'toggleChoosed'
 	    },
+	    initialize : function(){
+	    	this.cartsView = new CartsView({ model : this.model });
+	    },	
 	    toggleChoosed: function (e) {
 
-	    	var isChecked = e.currentTarget.checked;
+	    	// var isChecked = e.currentTarget.checked;
 
-	    	var cartsView = new CartsView({ model : this.model });
-
-	    	if(isChecked==true) {
-	    		cartsView.checked();
-	    		cartsView.render();
-	    	}	
-	    	else {
-	    		cartsView.unchecked();
-	    		cartsView.render();
-	    	}
+	    	// if(isChecked==true) {
+	    	this.cartsView.clicked();
+	    		//cartsView.render();
+	    	// }	
+	    	// else {
+	    	// 	cartsView.unchecked();
+	    	// 	cartsView.render();
+	    	// }
+	    },
+	    doneAdding : function(){
+	    	this.cartsView.render();
 	    },
 		render : function(){
 			this.$el.html(this.template(this.model.toJSON()));
 
 			return this;
 		}
+	});
+
+	var productView = new ProductView();
+
+	$('#doneAdding').click(function(){
+		productView.doneAdding();
 	});
 
 	return ProductView;

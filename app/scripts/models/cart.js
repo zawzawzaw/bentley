@@ -1,5 +1,5 @@
 define(['backbone'], function(Backbone){
-	var CartModel = Backbone.Model.extend({});
+	var CartModel = Backbone.Model.extend({	});
 
 	return CartModel;
 });

@@ -2,7 +2,7 @@ define(['backbone','models/car'],function(Backbone, Car){
 	var CarCollection = Backbone.Collection.extend({
 		model: Car,
 		url: function(){
-			return "../../../../b/api/salesrecord/";
+			return "../../../b/api/salesrecord/";
 		},
 		parse: function(resp, xhr)
 		{

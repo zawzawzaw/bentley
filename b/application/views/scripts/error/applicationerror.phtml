@@ -1,0 +1,21 @@
+<div class="unit padding-content1">
+	<div class="unit padding-content1">
+		<div class="destinations-header">
+			<div class="hr-title">Problem Found</div>
+                <br  />
+		</div>
+		<div style="clear:both;"></div>
+		<div id="content">
+			<br/>
+			<p> Oops, We found some problem when trying to process your request, please try again in a few minutes. Thanks.</p>
+			<br/>
+			<p><span onclick="javascript:$('#detail').toggle();" style="cursor:pointer:text-align:right">- detail -</span></p>
+			<div id="detail" style="display:none">
+				<p>
+					<strong><?php echo($this->Error->exception->getMessage()); ?></strong><br/>
+					<?php echo($this->Error->exception->getTraceAsString()); ?>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,7 +1,7 @@
-define(['backbone', 'models/cart'],function(Backbone, Cart){
+define(['backbone', 'models/cart'],function(Backbone, CartModel){
 	var CartsCollection = Backbone.Collection.extend({
 		idAttribute: 'prod_id',
-		model : Cart
+		model : CartModel
 	});
 
 	var cartsCollection = new CartsCollection();

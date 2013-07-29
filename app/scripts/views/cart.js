@@ -1,4 +1,4 @@
-define(['backbone','jquery','collections/carts', 'views/savecart'], function(Backbone, $, cartsCollection, SaveCartView){
+define(['backbone','jquery','collections/carts', 'views/finishcart', 'views/form', 'models/customer'], function(Backbone, $, cartsCollection, FinishCartView, FormView, CustomerModel){
 
 	var CartView = Backbone.View.extend({
 		tagName: 'div',
@@ -10,7 +10,6 @@ define(['backbone','jquery','collections/carts', 'views/savecart'], function(Bac
 			this.$el.append( this.template( this.model.toJSON() ) );
 
 			$('#total span').html(this.cpuTotalAmount());
-			console.log(this.cpuTotalAmount());
 
 			return this;
 		},
@@ -21,20 +20,20 @@ define(['backbone','jquery','collections/carts', 'views/savecart'], function(Bac
 
 			this.$el.remove();
 
+			$('#total span').html(this.cpuTotalAmount());
+
 			// console.log(cartsCollection);
 
 			// $el = $(e.currentTarget);
 		},
-		saveCart : function() {
-			var total = 0;
-
-			cartsCollection.each(function(cart){
-				var saveCartView = new SaveCartView({ model : cart });
-
-
-				total += parseInt(cart.get('amount'));
-				console.log(total);
-			}, this);
+		addCustomer: function(){
+			var customerModel = new CustomerModel();
+			var formView = new FormView({ model : customerModel });
+			formView.render();
+		},
+		finishCart : function() {
+			$('#container').hide();
+			this.addCustomer();
 		},
 		cpuTotalAmount : function() {
 			var total = 0;
@@ -52,8 +51,8 @@ define(['backbone','jquery','collections/carts', 'views/savecart'], function(Bac
 
 	var cartView = new CartView();
 
-	$('#saveCart').click(function(){
-		cartView.saveCart();
+	$('#finishCart').click(function(){
+		cartView.finishCart();
 	});
 
 	return CartView;

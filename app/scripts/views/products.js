@@ -4,6 +4,8 @@ define(['backbone','jquery','collections/car', 'views/product'], function(Backbo
 		render : function(id) {
 			this.collection = new CarCollection();
 
+			$('#carAndProductList').css('color', 'black');
+
 			var that = this;
 
 			this.collection.fetch(

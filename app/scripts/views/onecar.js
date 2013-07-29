@@ -1,4 +1,4 @@
-define(['backbone'], function(Backbone){
+define(['backbone','jquery'], function(Backbone, $){
 
 	var OneCarView = Backbone.View.extend({
 		tagName : 'div',

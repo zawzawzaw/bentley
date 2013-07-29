@@ -1,11 +1,12 @@
 define(['backbone','jquery','collections/carts', 'views/cart'], function(Backbone, $, cartsCollection, CartView){
 
 	var CartsView = Backbone.View.extend({
-		el : '#myCartList',
+		el : '#carAndProductList',
 		render: function(){
 			var self = this;
 
 			this.$el.html('');
+			this.$el.css('color', 'red' ); //remove it later
 
 			cartsCollection.each(function(cart){
 				self.addOne(cart ,self)
@@ -16,15 +17,20 @@ define(['backbone','jquery','collections/carts', 'views/cart'], function(Backbon
 
 			this.$el.append(cartView.render().el);
 		},
-		checked: function(){
+		clicked: function(){
+			$('#doneAdding').show();
 			cartsCollection.add(this.model);
-			 // console.log(cartsCollection.toJSON());
-		},
-		unchecked: function(){
-			cartsCollection.remove(this.model);
-			// cnsole.log(cartsCollection.toJSON());
+			console.log(cartsCollection.toJSON());
+			
 		}
+		// ,
+		// unchecked: function(){
+		// 	cartsCollection.remove(this.model);
+		// 	// cnsole.log(cartsCollection.toJSON());
+		// }
 	});
+
+
 
 
 	return CartsView;
