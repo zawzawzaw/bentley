@@ -63,7 +63,7 @@ class ApiController extends Zend_Controller_Action
 		$request_body = file_get_contents('php://input');
 		
 		$data = array();
-		$json = stripslashes($request_body);
+		$json = $request_body;
 		$formData = json_decode($json, true);
 
 		// print_r($formData);
@@ -97,6 +97,21 @@ class ApiController extends Zend_Controller_Action
 		
 		 echo json_encode($return);
 	}
+
+	function searchuserAction()
+	{
+		$return = array('res'=>'success');
+		$data['search'] = $this->_getParam('search');
+		$query = array();
+
+		$query['search'] = (isset($data['search'])) ? $data['search'] : '';
+
+		$o = new Orders();
+
+		$return['usersrecord'] = $o->getOrderByQuery($query);
+
+		echo json_encode($return);
+	}
 	
 	function salesrecordAction()
 	{
@@ -108,7 +123,7 @@ class ApiController extends Zend_Controller_Action
 		$data['search'] = $this->_getParam('search');
 		$data['model'] = $this->_getParam('model');
 		$data['category'] = $this->_getParam('category');
-		$data['product'] = $this->_getParam('product');
+		$data['product'] = $this->_getParam('product');	
 		$query = array();
 		
 		$query['mod_id']	= (isset($data['mod_id']))? $data['mod_id'] : '0';

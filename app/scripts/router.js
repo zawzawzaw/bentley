@@ -1,4 +1,4 @@
-define(['jquery','underscore','backbone','views/car','views/categories', 'views/products'], function($, _, Backbone, CarView, CategoriesView, ProductsView){
+define(['jquery','underscore','backbone','views/cars','views/categories', 'views/products'], function($, _, Backbone, CarsView, CategoriesView, ProductsView){
 	var AppRouter = Backbone.Router.extend({ 
 		routes : {
 			'' : 'showCarModels',
@@ -8,8 +8,8 @@ define(['jquery','underscore','backbone','views/car','views/categories', 'views/
 			'*other' : 'default'
 		},
 		showCarModels : function() {
-			var carView = new CarView();
-			carView.render();
+			var carsView = new CarsView();
+			carsView.render();
 		},
 		showCategories : function(id){
 			var categoriesView = new CategoriesView();
@@ -31,23 +31,6 @@ define(['jquery','underscore','backbone','views/car','views/categories', 'views/
 		var app_router = new AppRouter;
 		
 		Backbone.history.start(); 
-
-		$.fn.serializeObject = function()
-	    {
-	        var o = {};
-	        var a = this.serializeArray();
-	        $.each(a, function() {
-	            if (o[this.name] !== undefined) {
-	                if (!o[this.name].push) {
-	                    o[this.name] = [o[this.name]];
-	                }
-	                o[this.name].push(this.value || '');
-	            } else {
-	                o[this.name] = this.value || '';
-	            }
-	        });
-	        return o;
-	    };
 	}; 
 
 	return { initialize: initialize };

@@ -2,6 +2,7 @@ define(['backbone','jquery'], function(Backbone, $){
 
 	var FinishCartView = Backbone.View.extend({
 		initialize: function(){
+
 			this.model.url = function(){
 				return "../../../ipad/b/api/saveorder/";
 			};
@@ -14,6 +15,7 @@ define(['backbone','jquery'], function(Backbone, $){
 	                console.log('error! ' + response);
 	            }
 	        }, this);
+	        
 		}
 	});
 

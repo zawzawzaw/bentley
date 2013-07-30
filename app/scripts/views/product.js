@@ -6,34 +6,40 @@ define(['backbone', 'views/carts'], function(Backbone, CartsView){
         	'click .addToCart': 'toggleChoosed'
 	    },
 	    initialize : function(){
+
 	    	this.cartsView = new CartsView({ model : this.model });
+
+	    	$('#finishCart').hide();
+	    	$('#total').hide();
+
 	    },	
 	    toggleChoosed: function (e) {
-
+	    	
 	    	// var isChecked = e.currentTarget.checked;
-
-	    	// if(isChecked==true) {
 	    	this.cartsView.clicked();
-	    		//cartsView.render();
-	    	// }	
-	    	// else {
-	    	// 	cartsView.unchecked();
-	    	// 	cartsView.render();
-	    	// }
+
 	    },
 	    doneAdding : function(){
+
 	    	this.cartsView.render();
+
 	    },
 		render : function(){
-			this.$el.html(this.template(this.model.toJSON()));
 
+			this.$el.html(this.template(this.model.toJSON()));
 			return this;
+
 		}
 	});
 
 	var productView = new ProductView();
 
-	$('#doneAdding').click(function(){
+	var doneAdding = $('#doneAdding');
+	doneAdding.click(function(){
+		doneAdding.hide();
+		$('#finishCart').show();
+		$('#total').show();
+
 		productView.doneAdding();
 	});
 
