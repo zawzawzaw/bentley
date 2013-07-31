@@ -8,18 +8,19 @@ define(['backbone','jquery','collections/carts', 'views/cart'], function(Backbon
 			var self = this;
 
 			this.$el.html('');
-			this.$el.css('color', 'red' ); //remove it later
+
+			this.$el.append('<h3 id="cartPreview">Your Cart</h3>');
+			this.$el.append('<h3 id="total">Total: <span>0</span></h3>');
 
 			cartsCollection.each(function(cart){
 				self.addOne(cart, self)
-			}, this);
-			
+			}, this);		
 		},
 		addOne: function(cart){
 			
 			var cartView = new CartView({ model: cart });
-			this.$el.append(cartView.render().el);
 
+			$('#total').before(cartView.render().el);
 		},
 		clicked: function(){
 

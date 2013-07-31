@@ -17,9 +17,10 @@
 
 					<div id="carAndProductList"><!--things come in here --></div>
 
-					<div id="total" style="display:none;">Total: <span>0</span></div>
-					<div style="margin-top: 20px;"><button class="doneAdding" id="doneAdding" style="display:none;">Done Adding?</button></div>
 					<div><button class="finishCart" id="finishCart" style="display:none;">Finish</button></div>
+
+					<div style="margin-top: 20px;"><button class="doneAdding" id="doneAdding" style="display:none;">Done Adding?</button></div>
+					
 
 				</div>
 
@@ -58,14 +59,16 @@
 		</script>
 
 		<script id="viewcartTemplate" type="text/template">
-			<div><%= prod_name %></div>
-		    <div><%= amount %></div>
-		    <div><%= wheel %></div>
-		   	<button class="deleteFromCart" id="<%- prod_id %>">delete</button>
+			<div style="border: 1px solid #e3e3e3;">
+			    <h5><%= prod_name %></h5>
+			    <h5><%= amount %></h5>
+			    <h5><%= wheel %></h5>
+			    <button class="deleteFromCart" id="<%- prod_id %>" style="margin: 10px 0;">delete</button>
+		    </div>
 		</script>
 
 		<script type="text/template" id="customerForm">
-		
+			<h3>Customer Registration</h3>
 			<form class ="form form-horizontal">
 				<div class="control-group">
 				    <label for="name" class="control-label">Name</label>
@@ -122,7 +125,7 @@
 		</script>
 
 		<script type="text/template" id="searchResult">
-			<div style="border: 1px solid red; padding: 2px; margin-bottom: 2px;">
+			<div style="border: 1px solid #e3e3e3; padding: 2px; margin-bottom: 2px;">
 				<p>Order ID: <%= order_id %></p>
 				<p>Customer ID: <%= customer_id %></p>
 				<p>Customer Name: <%= name %></p>

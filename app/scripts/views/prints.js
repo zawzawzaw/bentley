@@ -7,6 +7,11 @@ define(['backbone', 'jquery', 'views/print'], function(Backbone, $, PrintView){
 
 			var self = this;
 
+			$('.cartPreview').text('Purchased Products');
+			$('.deleteFromCart').hide();
+			$('.finishCart').hide();
+
+
 			this.collection.each(function(cart){
 				self.addOne(cart);
 			});

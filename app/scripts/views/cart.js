@@ -3,10 +3,12 @@ define(['backbone','jquery','collections/carts', 'views/form', 'models/customer'
 	var CartView = Backbone.View.extend({
 		tagName: 'div',
 		template: _.template($('#viewcartTemplate').html()),
-		total : $('#total span'),
 		productListing : $('#ProductListing'),
 		events: {
 			'click .deleteFromCart' : 'deleteFromCart'
+		},
+		initialize: function(){
+			this.total = $('#total span');
 		},
 		render : function(){
 
