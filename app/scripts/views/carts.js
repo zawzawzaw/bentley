@@ -1,7 +1,7 @@
 define(['backbone','jquery','collections/carts', 'views/cart'], function(Backbone, $, cartsCollection, CartView){
 
 	var CartsView = Backbone.View.extend({
-		el : '#carAndProductList',
+		el : '#CarAndProductList',
 		doneAddingButton : $('#doneAdding'),
 		render: function(){
 
@@ -29,10 +29,8 @@ define(['backbone','jquery','collections/carts', 'views/cart'], function(Backbon
 			if(!count.length) {
 				cartsCollection.add(this.model);
 				this.model.set('select', 'selected');
-				console.log(this.model);
+				// console.log(this.model);
 			}
-			console.log(cartsCollection.toJSON());
-
 		}
 	});
 

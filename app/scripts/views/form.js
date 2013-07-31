@@ -1,12 +1,12 @@
-define(['backbone', 'jquery', 'collections/carts', 'views/finishcart', 'views/prints'], function(Backbone, $, cartsCollection, FinishCartView, PrintsView){
+define(['backbone', 'jquery', 'collections/carts', 'views/finishcart', 'views/prints', 'router'], function(Backbone, $, cartsCollection, FinishCartView, PrintsView, Router){
 
 	var formView = Backbone.View.extend({
 		el : '#CustomerRegistrationForm',
 		template : _.template($('#customerForm').html()),
 		productListing : $('#ProductListing'),
 		events : {
-			'click .submit' : 'submit',
-			'click .edit' : 'edit',
+			'click #submit' : 'submit',
+			'click #edit' : 'edit',
 		},
 		render : function() {
 
@@ -19,12 +19,17 @@ define(['backbone', 'jquery', 'collections/carts', 'views/finishcart', 'views/pr
 
 			e.preventDefault();
 			this.productListing.show();
-			this.$el.hide();
-
+			this.$el.html('');
+			console.log('edit');
 		},
 		submit : function(e){
 
 			e.preventDefault();
+			e.stopPropagation();
+
+			console.log('submit');
+
+			$('button .submit').attr('disabled','disabled');
 
 			$.fn.serializeObject = function()
 			{
@@ -58,10 +63,6 @@ define(['backbone', 'jquery', 'collections/carts', 'views/finishcart', 'views/pr
 	                
 					self.$el.hide();
 
-	                var printsView = new PrintsView({ collection : cartsCollection });
-
-	                printsView.render();
-
 	                $('.deleteFromCart').remove();
 	                $('.finishCart').remove();
 
@@ -70,6 +71,10 @@ define(['backbone', 'jquery', 'collections/carts', 'views/finishcart', 'views/pr
 	                console.log('error! ' + response);
 	            }
 	        }, this);
+
+    	    var printsView = new PrintsView({ collection : cartsCollection });
+
+            printsView.render();
 
 		},
 		save: function(customer_id){

@@ -1,16 +1,14 @@
 define(['backbone', 'jquery', 'views/print'], function(Backbone, $, PrintView){
 
 	var PrintsView = Backbone.View.extend({
-		el : "#carAndProductList",
+		el : "#CarAndProductList",
 		render : function(){
-			console.log(this.collection);
 
 			var self = this;
 
-			$('.cartPreview').text('Purchased Products');
-			$('.deleteFromCart').hide();
-			$('.finishCart').hide();
+			this.$el.html('');
 
+			this.$el.append('<h3 id="printPreview">Purchased Products</h3>');
 
 			this.collection.each(function(cart){
 				self.addOne(cart);

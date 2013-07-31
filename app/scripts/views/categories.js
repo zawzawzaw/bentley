@@ -1,18 +1,19 @@
 define(['backbone','jquery','collections/cars','views/category'], function(Backbone, $, CarsCollection, CategoryView){
 	var CategoriesView = Backbone.View.extend({
-		el : '#carAndProductList',
+		el : '#CarAndProductList',
 		render : function(id) {
 
 			this.collection = new CarsCollection();
 
 			var that = this;
+			that.$el.html('<h3>Categoires</h3>');
 			
 			this.collection.fetch(
 			{
 				data: { mod_id: id },
     			processData: true,
 		        success: function (collection, response) {
-		        	that.$el.html('<h3>Categoires</h3>');
+		        	
 					collection.each(that.addCategory, that);
 		        },
 		        error: function() {

@@ -1,5 +1,5 @@
 define(['backbone','models/car'],function(Backbone, Car){
-	var CarCollection = Backbone.Collection.extend({
+	var CarsCollection = Backbone.Collection.extend({
 		model: Car,
 		url: function(){
 			return "../../../b/api/salesrecord/";
@@ -21,6 +21,7 @@ define(['backbone','models/car'],function(Backbone, Car){
 	    }
 	});
 
+	var carsCollection = new CarsCollection();
 
-	return CarCollection;
+	return CarsCollection;
 });

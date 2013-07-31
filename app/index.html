@@ -15,21 +15,21 @@
 
 				<div id="ProductListing" class="span8">
 
-					<div id="carAndProductList"><!--things come in here --></div>
+					<div id="CarAndProductList"><!--all listing comes in here --></div>
 
-					<div><button class="finishCart" id="finishCart" style="display:none;">Finish</button></div>
-
-					<div style="margin-top: 20px;"><button class="doneAdding" id="doneAdding" style="display:none;">Done Adding?</button></div>
-					
+					<div style="margin-top: 20px;">
+						<button class="doneAdding" id="doneAdding" style="display:none;">Done Adding?</button>
+						<button class="finishCart" id="finishCart" style="display:none;">Finish</button>
+					</div>		
 
 				</div>
 
-				<div id="CustomerRegistrationForm" class="span8"><!--things come in here --></div>
+				<div id="CustomerRegistrationForm" class="span8"><!--form template comes in here --></div>
 
-				<div id="customerSearch" class="span4">
+				<div id="CustomerSearch" class="span4">
 
-					<div id="customerSearchForm"><!--things come in here --></div>
-					<div id="customerSearchResult"><!--things come in here --></div>
+					<div id="CustomerSearchForm"><!--form template comes in here --></div>
+					<div id="CustomerSearchResult"><!--search results come in here --></div>
 
 				</div>
 				
@@ -52,14 +52,17 @@
 		<script id="productTemplate" type="text/template">
 		    <div>
 			    <h5><%= prod_name %></h5>
-			    <h5><%= amount %></h5>
+			    <h5><%= amount %>  <%= option %> </h5>
 			    <h5><%= wheel %></h5>
+			    <h5><%= select %></h5>
 		    </div>
 		    <button class="addToCart" id="prod_<%= prod_id %>">Add To Cart</button>
 		</script>
 
 		<script id="viewcartTemplate" type="text/template">
 			<div style="border: 1px solid #e3e3e3;">
+			    <h5><%= model_no %></h5>
+			    <h5><%= cat_name %></h5>
 			    <h5><%= prod_name %></h5>
 			    <h5><%= amount %></h5>
 			    <h5><%= wheel %></h5>
@@ -98,8 +101,8 @@
 
 				<div class="control-group">
 				    <div class="controls">
-				    	<button class="submit">Submit</button>
-				    	<button class="edit">Edit</button>
+				    	<button id="submit" class="submit">Submit</button>
+				    	<button id="edit" class="edit">Edit</button>
 				    </div>
 				</div>
 			</form>

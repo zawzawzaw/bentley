@@ -48,7 +48,10 @@ define(['backbone','jquery','collections/carts', 'views/form', 'models/customer'
 
 	var cartView = new CartView();
 
-	$('#finishCart').click(function(){
+	$('#finishCart').click(function(e){
+		e.preventDefault();
+		e.stopPropagation();
+
 		cartView.addNewCustomer();
 	});
 

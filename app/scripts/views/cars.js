@@ -1,7 +1,7 @@
 define(['backbone','jquery','collections/cars', 'collections/searchusers' ,'views/car', 'views/searchusers'],function(Backbone, $, CarsCollection, SearchUsersCollection, CarView, SearchUserView){
 
 	var CarsView = Backbone.View.extend({
-		el : "#carAndProductList",
+		el : "#CarAndProductList",
 		CustomerRegistrationForm : $('#CustomerRegistrationForm'),
 		render : function() {
 			this.collection = new CarsCollection();

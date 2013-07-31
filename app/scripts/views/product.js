@@ -1,4 +1,4 @@
-define(['backbone', 'views/carts'], function(Backbone, CartsView){
+define(['backbone', 'views/carts', 'collections/carts'], function(Backbone, CartsView, CartsCollection){
 	var ProductView = Backbone.View.extend({
 		tagName : 'div',
 		template : _.template($('#productTemplate').html()),
@@ -9,6 +9,7 @@ define(['backbone', 'views/carts'], function(Backbone, CartsView){
 
 	    	this.cartsView = new CartsView({ model : this.model });
 
+	    	// hide when user click back button
 	    	$('#finishCart').hide();
 	    	$('#total').hide();
 
@@ -26,6 +27,17 @@ define(['backbone', 'views/carts'], function(Backbone, CartsView){
 	    },
 		render : function(){
 
+			var prod_ids = CartsCollection.pluck('prod_id');
+			var prod_id = this.model.get('prod_id');
+
+			this.model.set('select', '');
+
+			for(i=0; i<prod_ids.length; i++){
+				if(prod_id==prod_ids[i]) {
+					this.model.set('select', 'selected');
+				}
+			}
+
 			this.$el.html(this.template(this.model.toJSON()));
 			return this;
 
@@ -38,7 +50,6 @@ define(['backbone', 'views/carts'], function(Backbone, CartsView){
 	doneAdding.click(function(){
 		doneAdding.hide();
 		$('#finishCart').show();
-		$('#total').show();
 
 		productView.doneAdding();
 	});

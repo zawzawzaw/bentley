@@ -1,12 +1,12 @@
 define(['backbone','jquery', 'views/searchuser'], function(Backbone, $, SearchUserView){
 
 	var SearchUsersView = Backbone.View.extend({
-		el : '#customerSearchForm',
+		el : '#CustomerSearchForm',
 		template: _.template($('#searchUserForm').html()),
 		events : {
 			'click .search' : 'search'
 		},
-		customerSearchResult : $('#customerSearchResult'),
+		customerSearchResult : $('#CustomerSearchResult'),
 		render : function(){
 
 			var html = this.template();
