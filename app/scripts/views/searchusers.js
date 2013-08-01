@@ -1,15 +1,15 @@
-define(['backbone','jquery', 'views/searchuser'], function(Backbone, $, SearchUserView){
+define(['backbone','jquery', 'views/searchresults'], function(Backbone, $, SearchresultsView){
 
 	var SearchUsersView = Backbone.View.extend({
 		el : '#CustomerSearchForm',
 		template: _.template($('#searchUserForm').html()),
 		events : {
-			'click .search' : 'search'
+			'click #search' : 'search'
 		},
-		customerSearchResult : $('#CustomerSearchResult'),
 		render : function(){
 
 			var html = this.template();
+		
 			this.$el.html(html);
 			
 		},
@@ -37,26 +37,18 @@ define(['backbone','jquery', 'views/searchuser'], function(Backbone, $, SearchUs
 			var values = $(this.el).find('form').serializeObject();
 			var that = this;
 
-			this.customerSearchResult.html('');
-
 			this.collection.fetch(
 			{
 				data: { search: values.search },
 				processData: true,
 		        success: function (collection, response) {
-		        	collection.each(that.addUserData, that);
+	        		var searchresultsView = new SearchresultsView({ collection : collection });
+					searchresultsView.render();
 		        },
 		        error: function() {
 		             console.log('Failed to fetch!');
 		        }
 		   }, this);
-
-		},
-		addUserData : function(userdata){
-
-			var searchUserView = new SearchUserView({ model : userdata });
-			this.customerSearchResult.append(searchUserView.render().el);
-
 		}
 	});
 

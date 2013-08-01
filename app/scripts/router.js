@@ -1,11 +1,16 @@
-define(['jquery','underscore','backbone','views/cars','views/categories', 'views/products'], function($, _, Backbone, CarsView, CategoriesView, ProductsView){
+define(['jquery','underscore','backbone','views/form','views/cars','views/categories', 'views/products'], function($, _, Backbone, FormView, CarsView, CategoriesView, ProductsView){
 	var AppRouter = Backbone.Router.extend({ 
 		routes : {
-			'' : 'showCarModels',
+			'' : 'customerForm',
+			'showcarmodels' : 'showCarModels',
 			'showcategories/:id' : 'showCategories',
 			'showproducts/:id' : 'showProducts',
 			'search/:query': 'search',
 			'*other' : 'default'
+		},
+		customerForm : function(){
+			var formView = new FormView({ router : AppRouter });
+			formView.render();
 		},
 		showCarModels : function() {
 			var carsView = new CarsView();

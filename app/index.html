@@ -27,10 +27,10 @@
 				<div id="CustomerRegistrationForm" class="span8"><!--form template comes in here --></div>
 
 				<div id="CustomerSearch" class="span4">
-
+					
 					<div id="CustomerSearchForm"><!--form template comes in here --></div>
-					<div id="CustomerSearchResult"><!--search results come in here --></div>
-
+					<div id="MissingCat"><!--all missing categories comes in here --></div>
+					
 				</div>
 				
 			</div>
@@ -54,7 +54,7 @@
 			    <h5><%= prod_name %></h5>
 			    <h5><%= amount %>  <%= option %> </h5>
 			    <h5><%= wheel %></h5>
-			    <h5><%= select %></h5>
+			    <h5 style="color: red;"><%= select %></h5>
 		    </div>
 		    <button class="addToCart" id="prod_<%= prod_id %>">Add To Cart</button>
 		</script>
@@ -74,12 +74,12 @@
 			<h3>Customer Registration</h3>
 			<form class ="form form-horizontal">
 				<div class="control-group">
-				    <label for="name" class="control-label">Name</label>
+				    <label for="name" class="control-label">Customer Name</label>
 				    <div class="controls">
 				    	<input type="text" name="name" value="" >
 				    </div>
 				</div>
-				<div class="control-group">
+				<!--<div class="control-group">
 				    <label for="email" class="control-label">Email</label>
 				    <div class="controls">
 				    	<input type="text" name="email" value="" >
@@ -97,12 +97,12 @@
 				    <div class="controls">
 				    	<input type="text" name="phone" value="" >
 				    </div>
-				</div>
+				</div>-->
 
 				<div class="control-group">
 				    <div class="controls">
 				    	<button id="submit" class="submit">Submit</button>
-				    	<button id="edit" class="edit">Edit</button>
+				    	<!--<button id="edit" class="edit">Edit</button>-->
 				    </div>
 				</div>
 			</form>
@@ -120,7 +120,7 @@
 					</div>
 					<div class="control-group">
 					    <div class="controls">
-					    	<button class="search">Search</button>
+					    	<button id="search">Search</button>
 					    </div>
 					</div>
 				</form>
@@ -139,6 +139,12 @@
 			    <p>Amount :<%= amount %></p>
 			    <p>Wheel :<%= wheel %></p>
 			    <p>Date Added :<%= date_added %></p>
+		    </div>
+		</script>
+
+		<script type="text/template" id="checkList">
+			<div style="color: red; padding: 2px; margin-bottom: 2px;">
+				<p><%= model_no %> - <a href="#showproducts/<%= cat_id %>"><%= cat_name %></a></p>
 		    </div>
 		</script>
 

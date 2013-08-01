@@ -1,9 +1,12 @@
-define(['backbone','jquery','collections/carts', 'views/cart'], function(Backbone, $, cartsCollection, CartView){
+define(['backbone','jquery','collections/carts', 'collections/check', 'collections/missingcat', 'views/cart', 'views/missingcats'], function(Backbone, $, cartsCollection, CheckCollection, MissingcatCollection, CartView, MissingcatsView){
 
 	var CartsView = Backbone.View.extend({
 		el : '#CarAndProductList',
 		doneAddingButton : $('#doneAdding'),
 		render: function(){
+
+			this.checkmissingcat();
+			this.rendermissingcat();
 
 			var self = this;
 
@@ -31,6 +34,33 @@ define(['backbone','jquery','collections/carts', 'views/cart'], function(Backbon
 				this.model.set('select', 'selected');
 				// console.log(this.model);
 			}
+		},
+		checkmissingcat : function(){
+			cat_ids = CheckCollection.pluck('cat_id');
+			mod_ids = CheckCollection.pluck('mod_id');
+			MissingcatCollection.reset();
+
+			for(i=0;i<cat_ids.length;i++) {
+
+				var IfModelFoundInCart = cartsCollection.where({ mod_id: mod_ids[i] });
+
+				if(IfModelFoundInCart.length){
+
+					var IfCatIdNotInCart = cartsCollection.where({ cat_id: cat_ids[i] });
+
+					if(!IfCatIdNotInCart.length){
+						var missing_cat = CheckCollection.where({ cat_id: cat_ids[i] });
+
+						MissingcatCollection.add(missing_cat);
+					}
+				}
+			}
+
+			return this;
+		},
+		rendermissingcat: function(){
+			var missingcatsView = new MissingcatsView({ collection : MissingcatCollection });
+			missingcatsView.render();
 		}
 	});
 

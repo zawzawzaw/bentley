@@ -1,35 +1,37 @@
-define(['backbone', 'jquery', 'collections/carts', 'views/finishcart', 'views/prints', 'router'], function(Backbone, $, cartsCollection, FinishCartView, PrintsView, Router){
+define(['backbone', 'jquery', 'collections/carts', 'models/customer', 'views/finishcart', 'views/prints'], function(Backbone, $, cartsCollection, CustomerModel, FinishCartView, PrintsView){
 
 	var formView = Backbone.View.extend({
 		el : '#CustomerRegistrationForm',
 		template : _.template($('#customerForm').html()),
 		productListing : $('#ProductListing'),
 		events : {
-			'click #submit' : 'submit',
-			'click #edit' : 'edit',
+			'click #submit' : 'submit'
+			// 'click #edit' : 'edit',
 		},
 		render : function() {
+			this.router = new this.options.router;
+
+			if (CustomerModel.has("name")) {
+			  	this.router.navigate("showcarmodels", {trigger: true});
+			}
 
 			this.$el.show();
 			var html = this.template();
 			this.$el.html(html);
-
 		},
-		edit: function(e){
+		// edit: function(e){
 
-			e.preventDefault();
-			this.productListing.show();
-			this.$el.html('');
-			console.log('edit');
-		},
+		// 	e.preventDefault();
+		// 	this.productListing.show();
+		// 	this.$el.html('');
+		// 	console.log('edit');
+		// },
 		submit : function(e){
 
 			e.preventDefault();
 			e.stopPropagation();
 
-			console.log('submit');
-
-			$('button .submit').attr('disabled','disabled');
+			$('#submit').attr('disabled','disabled');
 
 			$.fn.serializeObject = function()
 			{
@@ -50,21 +52,26 @@ define(['backbone', 'jquery', 'collections/carts', 'views/finishcart', 'views/pr
 
 			var values = $(this.el).find('form').serializeObject();
 
-			this.model.set(values);
-			this.model.url = function(){
+			CustomerModel.set(values);
+			CustomerModel.url = function(){
 				return "../../../ipad/b/api/submit/";
 			};
 			var self = this;
-			this.model.save({},{
+			CustomerModel.save({},{
 	            success: function(model, response) {
-	                self.save(response.id);
+	                // self.save(response.id);
 
-	                self.productListing.show();
+	                // self.productListing.show();
+	                self.$el.hide();
 	                
-					self.$el.hide();
+					self.router.navigate("showcarmodels", {trigger: true});
 
-	                $('.deleteFromCart').remove();
-	                $('.finishCart').remove();
+					
+
+	    //             $('.deleteFromCart').remove();
+	    //             $('.finishCart').remove();
+
+
 
 	            },
 	            error: function(model, response) {
@@ -72,9 +79,9 @@ define(['backbone', 'jquery', 'collections/carts', 'views/finishcart', 'views/pr
 	            }
 	        }, this);
 
-    	    var printsView = new PrintsView({ collection : cartsCollection });
+    	    // var printsView = new PrintsView({ collection : cartsCollection });
 
-            printsView.render();
+         //    printsView.render();
 
 		},
 		save: function(customer_id){
@@ -83,6 +90,8 @@ define(['backbone', 'jquery', 'collections/carts', 'views/finishcart', 'views/pr
 
 			cartsCollection.each(function(cart){
 				cart.set('customer_id' , customer_id);
+				console.log(cart);
+
 				var finishCartView = new FinishCartView({ model : cart });
 			}, this);
 
