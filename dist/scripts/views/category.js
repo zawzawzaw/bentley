@@ -1,0 +1,1 @@
+define(["backbone","jquery"],function(e,t){var n=e.View.extend({tagName:"div",template:_.template(t("#categoryTemplate").html()),render:function(){return t("#finishCart").hide(),t("#total").hide(),this.$el.html(this.template(this.model.toJSON())),this}});return n});

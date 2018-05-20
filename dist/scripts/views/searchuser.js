@@ -1,0 +1,1 @@
+define(["backbone","jquery"],function(e,t){var n=e.View.extend({tagName:"div",template:_.template(t("#searchResult").html()),render:function(){return this.$el.html(this.template(this.model.toJSON())),this}});return n});

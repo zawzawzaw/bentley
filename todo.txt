@@ -1,0 +1,17 @@
+choosed <ticked>
+must choose only one product from a category ( get cid from cartview and compare with all available cid of each car )
+searching should be able to continue shopping
+specification product
+
+
+prevent double click on form submit
+form validation
+#refactor code
+styling
+
+next button to go to next categories
+
+hide search form
+
+
+

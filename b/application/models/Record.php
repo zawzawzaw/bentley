@@ -7,7 +7,7 @@ class Record extends Zend_Db_Table
 	public function getRecordByQuery($query, $cols=array(), $return='all')
 	{
 		if(empty($cols) || !is_array($cols)){
-			$cols=array('cm.mod_id','cm.model_no','cat.cat_id','cat.mod_id','cat.cat_name','prod.prod_id','prod.cat_id','prod.prod_name','prices.price_id','prices.prod_id','prices.amount', 'wheel'=>'IF(wheels.wheel_id IS NOT NULL,wheels.wheel,"")');
+			$cols=array('cm.mod_id','cm.model_no','cat.cat_id','cat.mod_id','cat.cat_name','prod.prod_id','prod.cat_id','prod.prod_name','prices.price_id','prices.prod_id','prices.amount','prices.option', 'wheel'=>'IF(wheels.wheel_id IS NOT NULL,wheels.wheel,"")');
 		}
 		
 		$sql = $this->select()->setIntegrityCheck(false)

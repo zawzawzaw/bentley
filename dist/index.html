@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>Bentley Showroom Sales Tool</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width">
+		<link rel="stylesheet" href="css/bootstrap.css">
+	</head>
+	<body>
+		<div class="container">
+
+			<div class="row">
+
+				<div id="ProductListing" class="span8">
+
+					<div id="CarAndProductList"><!--all listing comes in here --></div>
+
+					<div style="margin-top: 20px;">
+						<button class="doneAdding" id="doneAdding" style="display:none;">Done Adding?</button>
+						<button class="finishCart" id="finishCart" style="display:none;">Finish</button>
+					</div>		
+
+				</div>
+
+				<div id="CustomerRegistrationForm" class="span8"><!--form template comes in here --></div>
+
+				<div id="CustomerSearch" class="span4">
+
+					<div id="CustomerSearchForm"><!--form template comes in here --></div>
+					<div id="CustomerSearchResult"><!--search results come in here --></div>
+
+				</div>
+				
+			</div>
+
+		</div>
+
+		<script id="catelogueTemplate" type="text/template">
+		    <div>
+			    <h4><a href="#showcategories/<%= mod_id %>"><%= model_no %></a></h4>
+		    </div>
+		</script>
+
+		<script id="categoryTemplate" type="text/template">
+		    <div>
+		    	<h5><a href="#showproducts/<%= cat_id %>"><%= cat_name %></a></h5>
+		    </div>
+		</script>
+
+		<script id="productTemplate" type="text/template">
+		    <div>
+			    <h5><%= prod_name %></h5>
+			    <h5><%= amount %></h5>
+			    <h5><%= wheel %></h5>
+		    </div>
+		    <button class="addToCart" id="prod_<%= prod_id %>">Add To Cart</button>
+		</script>
+
+		<script id="viewcartTemplate" type="text/template">
+			<div style="border: 1px solid #e3e3e3;">
+			    <h5><%= prod_name %></h5>
+			    <h5><%= amount %></h5>
+			    <h5><%= wheel %></h5>
+			    <button class="deleteFromCart" id="<%- prod_id %>" style="margin: 10px 0;">delete</button>
+		    </div>
+		</script>
+
+		<script type="text/template" id="customerForm">
+			<h3>Customer Registration</h3>
+			<form class ="form form-horizontal">
+				<div class="control-group">
+				    <label for="name" class="control-label">Name</label>
+				    <div class="controls">
+				    	<input type="text" name="name" value="" >
+				    </div>
+				</div>
+				<div class="control-group">
+				    <label for="email" class="control-label">Email</label>
+				    <div class="controls">
+				    	<input type="text" name="email" value="" >
+				    </div>
+				</div>
+				<div class="control-group">
+					<label for="address" class="control-label">Address</label>
+					<div class="controls">
+						<textarea name="address"></textarea>
+					</div>
+				</div>
+
+				<div class="control-group">
+				    <label for="phone" class="control-label">Phone</label>
+				    <div class="controls">
+				    	<input type="text" name="phone" value="" >
+				    </div>
+				</div>
+
+				<div class="control-group">
+				    <div class="controls">
+				    	<button class="submit">Submit</button>
+				    	<button class="edit">Edit</button>
+				    </div>
+				</div>
+			</form>
+		
+		</script>
+
+		<script type="text/template" id="searchUserForm">
+			<div class="search_form">
+				<h3>Search</h3>
+				<form class ="form form-horizontal">
+					<div class="control-group">
+					    <div class="controls">
+					    	<input type="text" name="search" value="" placeholder="Search..." >
+					    </div>
+					</div>
+					<div class="control-group">
+					    <div class="controls">
+					    	<button class="search">Search</button>
+					    </div>
+					</div>
+				</form>
+			</div>
+		</script>
+
+		<script type="text/template" id="searchResult">
+			<div style="border: 1px solid #e3e3e3; padding: 2px; margin-bottom: 2px;">
+				<p>Order ID: <%= order_id %></p>
+				<p>Customer ID: <%= customer_id %></p>
+				<p>Customer Name: <%= name %></p>
+				<p>Email :<%= email %></p>
+				<p>Address : <%= address %></p>
+				<p>Phone : <%= phone %></p>
+				<p>Product Name: <%= prod_name %></p>
+			    <p>Amount :<%= amount %></p>
+			    <p>Wheel :<%= wheel %></p>
+			    <p>Date Added :<%= date_added %></p>
+		    </div>
+		</script>
+
+		<script data-main="scripts/main.js" src="scripts/vendor/requirejs/require.js"></script>
+	<body>
+</html>

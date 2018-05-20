@@ -1,0 +1,1 @@
+define(["backbone","jquery"],function(e,t){var n=e.View.extend({initialize:function(){this.model.url=function(){return"../../../ipad/b/api/saveorder/"},this.model.save({},{success:function(e,t){console.log(t.order_id)},error:function(e,t){console.log("error! "+t)}},this)}});return n});

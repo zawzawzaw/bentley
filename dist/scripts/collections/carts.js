@@ -1,0 +1,1 @@
+define(["backbone","models/cart"],function(e,t){var n=e.Collection.extend({idAttribute:"prod_id",model:t}),r=new n;return r});

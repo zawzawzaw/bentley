@@ -1,0 +1,1 @@
+define(["backbone","jquery"],function(e,t){var n=e.Model.extend({});return n});
